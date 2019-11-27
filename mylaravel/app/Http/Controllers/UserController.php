@@ -313,7 +313,7 @@ class UserController extends Controller
 
         // 信息同步
 
-        $user->group()->sync([1,2, 3]);
+//        $user->group()->sync([1,2, 3]);
 
         dd($group);
         echo 123;
