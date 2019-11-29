@@ -1,12 +1,8 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>
-<html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>
-<html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>
-<html class="lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="en"><!--<![endif]-->
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--><html lang="en"><!--<![endif]-->
 <head>
     <meta charset="utf-8">
 
@@ -14,8 +10,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
     <!-- Plugin Stylesheets first to ease overrides -->
-    <link rel="stylesheet" type="text/css" href="{{asset('/admins/plugins/colorpicker/colorpicker.css')}}"
-          media="screen">
+    <link rel="stylesheet" type="text/css" href="{{asset('/admins/plugins/colorpicker/colorpicker.css')}}" media="screen">
     <link rel="stylesheet" type="text/css" href="{{asset('/admins/custom-plugins/wizard/wizard.css')}}" media="screen">
 
     <!-- Required Stylesheets -->
@@ -59,145 +54,26 @@
     <!-- User Tools (notifications, logout, profile, change password) -->
     <div id="mws-user-tools" class="clearfix">
 
-        <!-- Notifications -->
-        <div id="mws-user-notif" class="mws-dropdown-menu">
-            <a href="#" data-toggle="dropdown" class="mws-dropdown-trigger"><i class="icon-exclamation-sign"></i></a>
 
-            <!-- Unread notification count -->
-            <span class="mws-dropdown-notif">35</span>
-
-            <!-- Notifications dropdown -->
-            <div class="mws-dropdown-box">
-                <div class="mws-dropdown-content">
-                    <ul class="mws-notifications">
-                        <li class="read">
-                            <a href="#">
-                                    <span class="message">
-                                        Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
-                                    </span>
-                                <span class="time">
-                                        January 21, 2012
-                                    </span>
-                            </a>
-                        </li>
-                        <li class="read">
-                            <a href="#">
-                                    <span class="message">
-                                        Lorem ipsum dolor sit amet
-                                    </span>
-                                <span class="time">
-                                        January 21, 2012
-                                    </span>
-                            </a>
-                        </li>
-                        <li class="unread">
-                            <a href="#">
-                                    <span class="message">
-                                        Lorem ipsum dolor sit amet
-                                    </span>
-                                <span class="time">
-                                        January 21, 2012
-                                    </span>
-                            </a>
-                        </li>
-                        <li class="unread">
-                            <a href="#">
-                                    <span class="message">
-                                        Lorem ipsum dolor sit amet
-                                    </span>
-                                <span class="time">
-                                        January 21, 2012
-                                    </span>
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="mws-dropdown-viewall">
-                        <a href="#">View All Notifications</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Messages -->
-        <div id="mws-user-message" class="mws-dropdown-menu">
-            <a href="#" data-toggle="dropdown" class="mws-dropdown-trigger"><i class="icon-envelope"></i></a>
-
-            <!-- Unred messages count -->
-            <span class="mws-dropdown-notif">35</span>
-
-            <!-- Messages dropdown -->
-            <div class="mws-dropdown-box">
-                <div class="mws-dropdown-content">
-                    <ul class="mws-messages">
-                        <li class="read">
-                            <a href="#">
-                                <span class="sender">John Doe</span>
-                                <span class="message">
-                                        Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
-                                    </span>
-                                <span class="time">
-                                        January 21, 2012
-                                    </span>
-                            </a>
-                        </li>
-                        <li class="read">
-                            <a href="#">
-                                <span class="sender">John Doe</span>
-                                <span class="message">
-                                        Lorem ipsum dolor sit amet
-                                    </span>
-                                <span class="time">
-                                        January 21, 2012
-                                    </span>
-                            </a>
-                        </li>
-                        <li class="unread">
-                            <a href="#">
-                                <span class="sender">John Doe</span>
-                                <span class="message">
-                                        Lorem ipsum dolor sit amet
-                                    </span>
-                                <span class="time">
-                                        January 21, 2012
-                                    </span>
-                            </a>
-                        </li>
-                        <li class="unread">
-                            <a href="#">
-                                <span class="sender">John Doe</span>
-                                <span class="message">
-                                        Lorem ipsum dolor sit amet
-                                    </span>
-                                <span class="time">
-                                        January 21, 2012
-                                    </span>
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="mws-dropdown-viewall">
-                        <a href="#">View All Messages</a>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <!-- User Information and functions section -->
         <div id="mws-user-info" class="mws-inset">
 
-            <!-- User Photo -->
+        <?php $user = \App\User::find(session('uid')); ?>
+
+        <!-- User Photo -->
             <div id="mws-user-photo">
-                <img src="{{asset('/admins/example/profile.jpg')}}" alt="User Photo">
+                <img src="{{$user->profile}}" alt="User Photo">
             </div>
 
             <!-- Username and Functions -->
             <div id="mws-user-functions">
                 <div id="mws-username">
-                    Hello, John Doe
+                    Hello,{{$user->username}}
                 </div>
                 <ul>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Change Password</a></li>
-                    <li><a href="index.html">Logout</a></li>
+                    <li><a href="#">修改密码</a></li>
+                    <li><a href="/logout">登出</a></li>
                 </ul>
             </div>
         </div>
@@ -233,7 +109,7 @@
         <div id="mws-navigation">
             <ul>
                 <li>
-                    <a href="#"><i class="icon-list"></i> 用户管理</a>
+                    <a href="#"><i class="icon-user"></i>用户管理</a>
                     <ul class="closed">
                         <li><a href="{{url('/user/add')}}">用户添加</a></li>
                         <li><a href="{{url('/user')}}">用户列表</a></li>
@@ -256,12 +132,12 @@
                 <li>
                     <a href="#"><i class="icon-list"></i> 文章管理</a>
                     <ul class="closed">
+                        <!-- post 也有文章的意思 -->
                         <li><a href="{{url('/article/create')}}">文章添加</a></li>
                         <li><a href="{{url('/article')}}">文章列表</a></li>
                     </ul>
                 </li>
             </ul>
-
         </div>
     </div>
 
@@ -270,6 +146,11 @@
 
         <!-- Inner Container Start -->
         <div class="container">
+            @if(session('info'))
+                <div class="mws-form-message info">
+                    {{session('info')}}
+                </div>
+            @endif
             @section('content')
             @show
         </div>
@@ -317,7 +198,7 @@
 <!-- Themer Script (Remove if not needed) -->
 <script src="{{asset('/admins/js/core/themer.js')}}"></script>
 
-<!-- Demo Scripts (remove if not needed) -->Lintou0321
+<!-- Demo Scripts (remove if not needed) -->
 <script src="{{asset('/admins/js/demo/demo.dashboard.js')}}"></script>
 
 </body>

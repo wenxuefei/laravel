@@ -1,6 +1,6 @@
 @extends('layout.admin')
 
-@section('title', '文章添加')
+@section('title', '文章修改')
 
 @section('content')
 <script type="text/javascript" charset="utf-8" src="/plugins/ueditor/ueditor.config.js"></script>
@@ -11,7 +11,7 @@
 
 <div class="mws-panel grid_8">
 	<div class="mws-panel-header">
-    	<span>文章添加</span>
+    	<span>文章修改</span>
     </div>
     @if (count($errors) > 0)
 	<div class="mws-form-message error">
@@ -24,12 +24,12 @@
 	@endif
 
     <div class="mws-panel-body no-padding">
-    	<form class="mws-form" action="{{url('/article')}}" method="post" enctype="multipart/form-data">
+    	<form class="mws-form" action="{{url('/article/'.$info->id)}}" method="post" enctype="multipart/form-data">
     		<div class="mws-form-inline">
     			<div class="mws-form-row">
     				<label class="mws-form-label">文章名</label>
     				<div class="mws-form-item">
-    					<input type="text" class="small" name="title" value="{{old('title')}}">
+    					<input type="text" class="small" name="title" value="{{$info->title}}">
     				</div>
     			</div>
 
@@ -39,7 +39,7 @@
                         <select class="small" name="category_id">
                             <option value="0">请选择</option>
                             @foreach($cates as $k=>$v)
-                            <option value="{{$v->id}}">{{$v->name}}</option>
+                            <option value="{{$v->id}}" @if($v->id == $info->category_id)  selected @endif>{{$v->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -48,13 +48,14 @@
     			<div class="mws-form-row">
     				<label class="mws-form-label">文章主图</label>
     				<div class="mws-form-item">
-    					<input type="file" class="small" name="img">
+                        <img src="{{$info->img}}" alt="">
+    					<input type="file" class="small" name="img" value="">
     				</div>
     			</div>
     			<div class="mws-form-row">
     				<label class="mws-form-label">文章详情</label>
     				<div class="mws-form-item">
-    					<textarea id="editor" rows="" cols="" style="width:800px;height:300px;"  name="content"></textarea>
+    					<textarea id="editor" rows="" cols="" style="width:800px;height:300px;"  name="content">{!!$info->content!!}</textarea>
     				</div>
     			</div>
                 <div class="mws-form-row bordered">
@@ -62,7 +63,7 @@
                     <div class="mws-form-item clearfix">
                         <ul class="mws-form-list inline">
                             @foreach($tags as $k=>$v)
-                            <li><label><input type="checkbox" name="tag_id[]" value="{{$v->id}}"> {{$v->name}}</label></li>
+                            <li><label><input @if(in_array($v->id, $ids)) checked @endif type="checkbox" name="tag_id[]" value="{{$v->id}}"> {{$v->name}}</label></li>
                             @endforeach
                         </ul>
                     </div>
@@ -77,7 +78,9 @@
             </script>
     		<div class="mws-button-row">
     			{{csrf_field()}}
-    			<input type="submit" value="添加" class="btn btn-danger">
+                <input type="hidden" name="id" value="{{$info->id}}">
+                <input type="hidden" name="_method" value="PUT">
+    			<input type="submit" value="修改" class="btn btn-danger">
     			<input type="reset" value="重置" class="btn ">
     		</div>
     	</form>
