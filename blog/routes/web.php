@@ -25,4 +25,6 @@ Route::get('/user/delete/{id}','UserController@delete');
 
 
 Route::resource('category','CategoryController');
+Route::resource('tag','TagController');
+Route::resource('Article','ArticleController');
 

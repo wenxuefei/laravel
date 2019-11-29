@@ -243,7 +243,21 @@
                     <a href="#"><i class="icon-list"></i> 分类管理</a>
                     <ul class="closed">
                         <li><a href="{{url('/category/create')}}">分类添加</a></li>
-                        <li><a href="{{url('/category/show')}}">分类列表</a></li>
+                        <li><a href="{{url('/category')}}">分类列表</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="icon-list"></i> 标签管理</a>
+                    <ul class="closed">
+                        <li><a href="{{url('/tag/create')}}">标签添加</a></li>
+                        <li><a href="{{url('/tag')}}">标签列表</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="icon-list"></i> 文章管理</a>
+                    <ul class="closed">
+                        <li><a href="{{url('/article/create')}}">文章添加</a></li>
+                        <li><a href="{{url('/article')}}">文章列表</a></li>
                     </ul>
                 </li>
             </ul>
